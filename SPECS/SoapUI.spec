@@ -45,4 +45,5 @@ __EOF
 [ $1 = 0 ] && /usr/bin/xdg-desktop-menu uninstall /opt/%{vendor}/%{name}-%{version}/%{vendor}-%{name}.desktop
 
 %files
+%dir /opt/%{vendor}
 /opt/%{vendor}/%{name}-%{version}
