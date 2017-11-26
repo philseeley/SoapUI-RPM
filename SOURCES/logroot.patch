@@ -1,0 +1,12 @@
+diff -ru SoapUI-5.3.0.orig/bin/soapui.sh SoapUI-5.3.0/bin/soapui.sh
+--- SoapUI-5.3.0.orig/bin/soapui.sh	2016-11-30 16:04:23.000000000 +1100
++++ SoapUI-5.3.0/bin/soapui.sh	2017-11-26 12:26:16.513464282 +1100
+@@ -33,7 +33,7 @@
+ 
+ export SOAPUI_CLASSPATH
+ 
+-JAVA_OPTS="-Xms128m -Xmx1024m -XX:MinHeapFreeRatio=20 -XX:MaxHeapFreeRatio=40 -Dsoapui.properties=soapui.properties -Dsoapui.home=$SOAPUI_HOME/bin -splash:SoapUI-Spashscreen.png"
++JAVA_OPTS="-Xms128m -Xmx1024m -XX:MinHeapFreeRatio=20 -XX:MaxHeapFreeRatio=40 -Dsoapui.properties=soapui.properties -Dsoapui.home=$SOAPUI_HOME/bin -splash:SoapUI-Spashscreen.png -Dsoapui.logroot=${HOME}/"
+ JFXRTPATH=`java -cp $SOAPUI_CLASSPATH com.eviware.soapui.tools.JfxrtLocator`
+ SOAPUI_CLASSPATH=$JFXRTPATH:$SOAPUI_CLASSPATH
+ 
