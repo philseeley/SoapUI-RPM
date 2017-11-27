@@ -1,14 +1,18 @@
 %define _topdir %(pwd)
+%define product_name    SoapUI
+%define product_version 5.3
+%define product_patch   0
+%define product_dir      %{product_name}-%{version}.%{product_patch}
 
-name:      SoapUI
-version:   5.3.0
-release:   1
+name:      %{product_name}%{product_version}
+version:   %{product_version}
+release:   %{product_patch}.1
 summary:   SoapUI
 license:   EUPL, Version 1.1+
 group:     Development/Tools
 vendor:    SmartBear
 url:       https://www.soapui.org/downloads/latest-release.html
-source:    %{name}-%{version}-linux-bin.tar.gz
+source:    %{product_name}-%{version}.%{product_patch}-linux-bin.tar.gz
 source1:   SoapUI.png
 patch0:    logroot.patch
 buildarch: noarch
@@ -19,31 +23,31 @@ SoapUI.
 
 %prep
 
-%setup -q
+%setup -q -n %{product_dir}
 %patch0 -p1
 cp %{SOURCE1} .
 
 %install
 
-mkdir -p %{buildroot}/opt/%{vendor}/%{name}-%{version}
-mv %{_builddir}/%{name}-%{version}/* %{buildroot}/opt/%{vendor}/%{name}-%{version}/
+mkdir -p %{buildroot}/opt/%{vendor}/%{name}
+mv %{_builddir}/%{product_dir}/* %{buildroot}/opt/%{vendor}/%{name}/
 
-cat <<__EOF >%{buildroot}/opt/%{vendor}/%{name}-%{version}/%{vendor}-%{name}.desktop
+cat <<__EOF >%{buildroot}/opt/%{vendor}/%{name}/%{vendor}-%{name}.desktop
 [Desktop Entry]
-Name=Soap UI
-Exec=/opt/%{vendor}/%{name}-%{version}/bin/soapui.sh %f
+Name=SoapUI %{version}
+Exec=/opt/%{vendor}/%{name}/bin/soapui.sh %f
 Terminal=false
-Icon=/opt/%{vendor}/%{name}-%{version}/SoapUI.png
+Icon=/opt/%{vendor}/%{name}/SoapUI.png
 Type=Application
 Categories=Development
 __EOF
 
 %post
-/usr/bin/xdg-desktop-menu install /opt/%{vendor}/%{name}-%{version}/%{vendor}-%{name}.desktop
+/usr/bin/xdg-desktop-menu install /opt/%{vendor}/%{name}/%{vendor}-%{name}.desktop
 
 %preun
-[ $1 = 0 ] && /usr/bin/xdg-desktop-menu uninstall /opt/%{vendor}/%{name}-%{version}/%{vendor}-%{name}.desktop
+[ $1 = 0 ] && /usr/bin/xdg-desktop-menu uninstall /opt/%{vendor}/%{name}/%{vendor}-%{name}.desktop
 
 %files
 %dir /opt/%{vendor}
-/opt/%{vendor}/%{name}-%{version}
+/opt/%{vendor}/%{name}
