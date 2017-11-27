@@ -16,7 +16,7 @@ source:    %{product_name}-%{version}.%{product_patch}-linux-bin.tar.gz
 source1:   SoapUI.png
 patch0:    logroot.patch
 buildarch: noarch
-requires:  jre
+requires:  jre >= 1.7
 
 %description
 SoapUI.
