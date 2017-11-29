@@ -1,8 +1,8 @@
 %define _topdir %(pwd)
 %define product_name    SoapUI
-%define product_version 5.3
+%define product_version 5.4
 %define product_patch   0
-%define product_dir      %{product_name}-%{version}.%{product_patch}
+%define product_dir      %{product_name}-%{version}.%{product_patch}-EB
 
 name:      %{product_name}%{product_version}
 version:   %{product_version}
@@ -12,7 +12,7 @@ license:   EUPL, Version 1.1+
 group:     Development/Tools
 vendor:    SmartBear
 url:       https://www.soapui.org/downloads/latest-release.html
-source:    %{product_name}-%{version}.%{product_patch}-linux-bin.tar.gz
+source:    %{product_dir}-linux-bin.tar.gz
 source1:   SoapUI.png
 patch0:    logroot.patch
 buildarch: noarch
